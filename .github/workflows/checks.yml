@@ -1,0 +1,23 @@
+name: Verify imports and reports
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - name: Show Python version
+        run: python3 --version
+      - name: Test validation, transactions, SQL and CLI
+        run: python3 -m unittest discover -s tests -v
+      - name: Run the documented sample
+        run: |
+          python3 -m storemetrics import samples/sales.csv
+          python3 -m storemetrics report --html reports/overview.html
+          python3 -m storemetrics report --month 2026-07

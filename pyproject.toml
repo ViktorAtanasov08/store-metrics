@@ -1,0 +1,9 @@
+[project]
+name = "store-metrics"
+version = "0.1.0"
+description = "A learning prototype for validated sales CSV imports and SQLite reports"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.ruff]
+line-length = 100
